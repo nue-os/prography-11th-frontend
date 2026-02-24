@@ -1,5 +1,11 @@
 import { User } from '../types/admin';
 
+export const adminSidebarMenu = [
+  { label: '회원 관리', path: '/admin/users' },
+  { label: '출결 관리', path: '/admin/attendance' },
+  { label: '세션 관리', path: '/admin/sessions' },
+];
+
 export const userColumns: { key: keyof User; label: string }[] = [
   { key: 'userId', label: '회원 ID' },
   { key: 'name', label: '이름' },
