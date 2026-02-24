@@ -2,9 +2,10 @@ import Pagination from '../components/Pagination';
 import Table from '../components/Table';
 import { userColumns } from '../constants/admin';
 import { userHistoryData } from '../mocks/adminData';
-import { useSearchParams } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 const UserHistory = () => {
+  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
@@ -56,7 +57,7 @@ const UserHistory = () => {
             }
             return String(row[key]);
           }}
-          onRowClick={() => {}}
+          onRowClick={() => navigate('/modify')}
         />
       </section>
 
