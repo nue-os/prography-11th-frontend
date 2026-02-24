@@ -1,11 +1,14 @@
+import { useState } from 'react';
 import Pagination from '../components/Pagination';
 import Table from '../components/Table';
 import { userColumns } from '../constants/admin';
 import { userHistoryData } from '../mocks/adminData';
 import { useNavigate, useSearchParams } from 'react-router-dom';
+import Modal from '../components/Modal';
 
 const UserHistory = () => {
   const navigate = useNavigate();
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
@@ -60,6 +63,27 @@ const UserHistory = () => {
           onRowClick={() => navigate('/modify')}
         />
       </section>
+
+      <div className="flex justify-end my-5">
+        <button
+          className="bg-gray-500 rounded-sm text-white p-2 border-none hover:bg-gray-400"
+          onClick={() => setIsModalOpen(true)}
+        >
+          추가
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <button
+            onClick={() => setIsModalOpen(false)}
+            className="absolute top-2 right-3"
+          >
+            x
+          </button>
+          <h2>모달입니다</h2>
+        </Modal>
+      )}
 
       {/* 페이지네이션 */}
       <Pagination
