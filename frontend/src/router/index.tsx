@@ -13,7 +13,7 @@ export const router = createBrowserRouter([
         element: <UserHistory />,
       },
       {
-        path: '/admin/user/modify',
+        path: '/admin/users/modify',
         element: <UserModify />,
       },
     ],

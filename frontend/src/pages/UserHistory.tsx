@@ -60,7 +60,7 @@ const UserHistory = () => {
             }
             return String(row[key]);
           }}
-          onRowClick={() => navigate('/modify')}
+          onRowClick={() => navigate('/admin/users/modify')}
         />
       </section>
 
