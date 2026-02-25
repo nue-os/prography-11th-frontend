@@ -11,3 +11,10 @@ export interface User {
 }
 
 export type UserForm = z.infer<typeof userFormSchema>;
+
+export interface Attendance {
+  userName: string;
+  team: string;
+  date: string;
+  status: '출석' | '결석';
+}
