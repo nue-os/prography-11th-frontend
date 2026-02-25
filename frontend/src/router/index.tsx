@@ -2,6 +2,7 @@ import { createBrowserRouter } from 'react-router-dom';
 import UserHistory from '../pages/UserHistory';
 import UserModify from '../pages/UserModify';
 import AdminLayout from '../layout/AdminLayout';
+import AttendanceHistory from '../pages/AttendanceHistory';
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/users/modify',
         element: <UserModify />,
+      },
+      {
+        path: '/admin/attendance',
+        element: <AttendanceHistory />,
       },
     ],
   },
