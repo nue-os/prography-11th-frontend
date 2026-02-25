@@ -37,7 +37,7 @@ const Modal = ({ isOpen, onClose, children }: ModalProps) => {
       onClick={onClose}
     >
       <div
-        className="bg-white rounded-md shadow-modal flex min-w-82 flex-col overflow-hidden"
+        className="bg-white rounded-md shadow-modal flex min-w-[50%] flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="overflow-y-auto p-5 relative">{children}</div>
