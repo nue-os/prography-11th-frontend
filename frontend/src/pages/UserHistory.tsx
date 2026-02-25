@@ -5,6 +5,7 @@ import { userColumns } from '../constants/admin';
 import { userHistoryData } from '../mocks/adminData';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Modal from '../components/Modal';
+import UserRegister from './UserRegister';
 
 const UserHistory = () => {
   const navigate = useNavigate();
@@ -75,13 +76,7 @@ const UserHistory = () => {
 
       {isModalOpen && (
         <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <button
-            onClick={() => setIsModalOpen(false)}
-            className="absolute top-2 right-3"
-          >
-            x
-          </button>
-          <h2>모달입니다</h2>
+          <UserRegister onClose={() => setIsModalOpen(false)} />
         </Modal>
       )}
 
