@@ -6,3 +6,16 @@ export const userHistoryData = Array.from({ length: 150 }, (_, index) => ({
   team: ['프론트엔드', '백엔드', '디자인'][index % 3],
   position: ['팀원', '팀장'][index % 2],
 }));
+
+export const attendanceMock = Array.from({ length: 150 }, (_, index) => {
+  const userId = (index % 30) + 1;
+  const day = (index % 28) + 1;
+
+  return {
+    userId,
+    userName: `유저${userId}`,
+    team: ['프론트엔드', '백엔드', '디자인'][userId % 3],
+    date: `2026-02-${String(day).padStart(2, '0')}`,
+    status: ['출석', '결석'][index % 2],
+  };
+});
