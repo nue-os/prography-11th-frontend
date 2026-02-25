@@ -13,6 +13,7 @@ interface InputProps<T extends FieldValues> {
   control: Control<T>;
   rules?: RegisterOptions<T>;
   readonly?: boolean;
+  type?: 'text' | 'number';
 }
 
 const Input = <T extends FieldValues>({
@@ -22,6 +23,7 @@ const Input = <T extends FieldValues>({
   control,
   rules,
   readonly = false,
+  type = 'text',
 }: InputProps<T>) => {
   const inputBaseClasses =
     'w-full p-3 peer border rounded-md border-gray-400 focus:outline-none disabled:cursor-not-allowed';
@@ -36,9 +38,19 @@ const Input = <T extends FieldValues>({
           <label htmlFor={id}>{label}</label>
 
           <input
+            type={type}
             id={id}
             {...field}
             value={field.value ?? ''}
+            onChange={(e) => {
+              if (type === 'number') {
+                field.onChange(
+                  e.target.value === '' ? undefined : Number(e.target.value),
+                );
+              } else {
+                field.onChange(e.target.value);
+              }
+            }}
             className={inputBaseClasses}
             readOnly={readonly}
           />
