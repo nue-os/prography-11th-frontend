@@ -1,4 +1,4 @@
-import { User } from '../types/admin';
+import { Attendance, User } from '../types/admin';
 
 export const adminSidebarMenu = [
   { label: '회원 관리', path: '/admin/users' },
@@ -13,4 +13,11 @@ export const userColumns: { key: keyof User; label: string }[] = [
   { key: 'team', label: '소속 팀' },
   { key: 'attendanceCount', label: '누적 출석 횟수' },
   { key: 'status', label: '상태' },
+];
+
+export const attendanceColumns: { key: keyof Attendance; label: string }[] = [
+  { key: 'userName', label: '사용자 명' },
+  { key: 'team', label: '팀 명' },
+  { key: 'status', label: '출석 여부' },
+  { key: 'date', label: '날짜' },
 ];
