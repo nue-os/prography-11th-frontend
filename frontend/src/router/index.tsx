@@ -3,6 +3,7 @@ import UserHistory from '../pages/UserHistory';
 import UserModify from '../pages/UserModify';
 import AdminLayout from '../layout/AdminLayout';
 import AttendanceHistory from '../pages/AttendanceHistory';
+import AttendanceDetail from '../pages/AttendanceDetail';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/attendance',
         element: <AttendanceHistory />,
+      },
+      {
+        path: '/admin/attendance/1',
+        element: <AttendanceDetail />,
       },
     ],
   },
