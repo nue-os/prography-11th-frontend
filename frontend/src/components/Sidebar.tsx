@@ -14,6 +14,7 @@ const Sidebar = () => {
 
           return (
             <Link
+              key={item.path}
               to={item.path}
               className={`transition-smooth flex items-center gap-5 ${isActive ? '' : ' text-gray-400'} `}
             >
