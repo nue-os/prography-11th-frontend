@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
 import UserHistory from '../pages/UserHistory';
 import UserModify from '../pages/UserModify';
 import AdminLayout from '../layout/AdminLayout';
@@ -10,6 +10,7 @@ export const router = createBrowserRouter([
     path: '/',
     element: <AdminLayout />,
     children: [
+      { index: true, element: <Navigate to="/admin/users" replace /> },
       {
         path: '/admin/users',
         element: <UserHistory />,
