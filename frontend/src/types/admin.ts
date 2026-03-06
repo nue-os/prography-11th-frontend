@@ -48,3 +48,11 @@ export interface UserAttendance {
 export interface UserAttendanceResponse {
   data: UserAttendance;
 }
+
+export interface AttendacneForm {
+  sessionId: number;
+  memberId: number;
+  status: AttendanceStatus;
+  lateMinutes: number | null;
+  reason: string | null;
+}
