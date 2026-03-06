@@ -1,11 +1,13 @@
 import { Link, useLocation } from 'react-router-dom';
 import { adminSidebarMenu } from '../constants/admin';
+import Logo from '@/assets/logo.png';
 
 const Sidebar = () => {
   const location = useLocation();
 
   return (
-    <aside className="bg-gray-200 flex min-h-screen w-full max-w-50 p-5">
+    <aside className="bg-gray-200 flex flex-col min-h-screen w-full max-w-50 p-5 gap-10">
+      <img src={Logo} alt="로고" />
       <nav className="flex flex-col gap-2">
         {adminSidebarMenu.map((item) => {
           const isActive = location.pathname.startsWith(item.path);
