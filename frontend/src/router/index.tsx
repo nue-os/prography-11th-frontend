@@ -4,6 +4,7 @@ import UserModify from '../pages/UserModify';
 import AdminLayout from '../layout/AdminLayout';
 import AttendanceHistory from '../pages/AttendanceHistory';
 import AttendanceDetail from '../pages/AttendanceDetail';
+import SessionHistory from '../pages/SessionHistory';
 
 export const router = createBrowserRouter([
   {
@@ -26,6 +27,10 @@ export const router = createBrowserRouter([
       {
         path: '/admin/attendance/1',
         element: <AttendanceDetail />,
+      },
+      {
+        path: '/admin/sessions',
+        element: <SessionHistory />,
       },
     ],
   },
