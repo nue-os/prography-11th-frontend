@@ -37,11 +37,11 @@ const AttendanceRegister = ({ onClose }: AttendanceRegisterProps) => {
   return (
     <main className="space-y-2 m-4">
       {/* 제목 */}
-      <h1 className="text-2xl font-medium">회원 등록</h1>
+      <h1 className="text-2xl font-medium">출결 등록</h1>
       <hr />
 
       {/* 등록 폼 */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="my-5">
         <Select
           name="status"
           id="status"
