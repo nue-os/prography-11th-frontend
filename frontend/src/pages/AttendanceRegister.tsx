@@ -41,7 +41,7 @@ const AttendanceRegister = ({ onClose }: AttendanceRegisterProps) => {
       <hr />
 
       {/* 등록 폼 */}
-      <form onSubmit={handleSubmit(onSubmit)} className="my-5">
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 my-5">
         <Select
           name="status"
           id="status"

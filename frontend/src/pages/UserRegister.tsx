@@ -31,7 +31,7 @@ const UserRegister = ({ onClose }: UserRegisterProps) => {
       <hr />
 
       {/* 등록 폼 */}
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 my-5">
         <Input name="name" id="name" label="이름" control={control} />
         <Input name="userId" id="userId" label="아이디" control={control} />
         <Input
