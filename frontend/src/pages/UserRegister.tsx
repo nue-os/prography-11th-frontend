@@ -63,6 +63,7 @@ const UserRegister = ({ onClose }: UserRegisterProps) => {
             등록
           </button>
           <button
+            type="button"
             onClick={onClose}
             className="border rounded-sm p-2 border-gray-500 hover:bg-gray-300"
           >
