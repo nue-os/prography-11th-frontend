@@ -34,7 +34,7 @@ const AttendanceHistory = () => {
       {/* 검색 */}
 
       {/* 테이블 */}
-      <section className="space-y-7">
+      <section className="space-y-7 my-5">
         <div className="absolute -top-5 right-0 -translate-y-full font-medium">
           전체 <span className="text-pri-400">{123}</span>
         </div>
