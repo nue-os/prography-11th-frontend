@@ -1,8 +1,13 @@
+import { useState } from 'react';
 import InfoTable from '../components/InfoTable';
 import { mockUserAttendance } from '../mocks/attendanceData';
 import { AttendanceDetail as AttendanceDetailType } from '../types/admin';
+import Modal from '../components/Modal';
+import AttendanceRegister from './AttendanceRegister';
 
 const AttendanceDetail = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const userInfoRows = [
     {
       items: [
@@ -102,6 +107,21 @@ const AttendanceDetail = () => {
           <InfoTable key={a.id} rows={attendanceRows(a)} />
         ))}
       </section>
+
+      <div className="flex justify-end my-5">
+        <button
+          className="bg-gray-500 rounded-sm text-white p-2 border-none hover:bg-gray-400"
+          onClick={() => setIsModalOpen(true)}
+        >
+          추가
+        </button>
+      </div>
+
+      {isModalOpen && (
+        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
+          <AttendanceRegister onClose={() => setIsModalOpen(false)} />
+        </Modal>
+      )}
     </main>
   );
 };

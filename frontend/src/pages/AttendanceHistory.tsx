@@ -3,13 +3,10 @@ import Table from '../components/Table';
 import { attendanceColumns } from '../constants/admin';
 import Pagination from '../components/Pagination';
 import { attendanceMock } from '../mocks/adminData';
-import { useState } from 'react';
-import Modal from '../components/Modal';
-import AttendanceRegister from './AttendanceRegister';
 
 const AttendanceHistory = () => {
   const navigate = useNavigate();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
@@ -64,21 +61,6 @@ const AttendanceHistory = () => {
           onRowClick={() => navigate(`/admin/attendance/${1}`)}
         />
       </section>
-
-      <div className="flex justify-end my-5">
-        <button
-          className="bg-gray-500 rounded-sm text-white p-2 border-none hover:bg-gray-400"
-          onClick={() => setIsModalOpen(true)}
-        >
-          추가
-        </button>
-      </div>
-
-      {isModalOpen && (
-        <Modal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)}>
-          <AttendanceRegister onClose={() => setIsModalOpen(false)} />
-        </Modal>
-      )}
 
       {/* 페이지네이션 */}
       <Pagination
