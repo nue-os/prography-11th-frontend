@@ -1,5 +1,5 @@
 import z from 'zod';
-import { userFormSchema } from '../utils/validation';
+import { userFormSchema, userModifySchema } from '../utils/validation';
 
 export interface GetUsersParams {
   page?: number;
@@ -23,6 +23,7 @@ export interface User {
 }
 
 export type UserForm = z.infer<typeof userFormSchema>;
+export type UserModifyForm = z.infer<typeof userModifySchema>;
 
 export interface Attendance {
   userName: string;
