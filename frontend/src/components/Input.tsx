@@ -13,7 +13,7 @@ interface InputProps<T extends FieldValues> {
   control: Control<T>;
   rules?: RegisterOptions<T>;
   readonly?: boolean;
-  type?: 'text' | 'number';
+  type?: 'text' | 'number' | 'password';
 }
 
 const Input = <T extends FieldValues>({
