@@ -30,5 +30,9 @@ export const userFormSchema = z.object({
       '올바른 휴대폰 번호 형식을 입력해 주세요.',
     ),
   teamId: z.number().min(1, '참여팀을 입력해 주세요.').optional(),
-  createdAt: z.string().optional(),
+});
+
+export const userModifySchema = userFormSchema.omit({
+  loginId: true,
+  password: true,
 });
