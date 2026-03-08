@@ -3,27 +3,47 @@ import Input from '../components/Input';
 import { UserForm } from '../types/admin';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { userFormSchema } from '../utils/validation';
+import { useMutation } from '@tanstack/react-query';
+import { postUser } from '../apis/user';
+import { useNavigate } from 'react-router-dom';
 
 interface UserRegisterProps {
   onClose: () => void;
 }
 const UserRegister = ({ onClose }: UserRegisterProps) => {
+  const navigate = useNavigate();
+
   const { control, handleSubmit } = useForm<UserForm>({
     resolver: zodResolver(userFormSchema),
     mode: 'onSubmit',
     defaultValues: {
       name: '',
-      userId: '',
-      generation: undefined,
-      part: '',
-      phoneNumber: '',
-      participationTeam: '',
+      loginId: '',
+      password: '',
+      cohortId: undefined,
+      phone: '',
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: postUser,
+    onSuccess: () => {
+      onClose();
+      navigate(`/admin/users`);
+    },
+    onError: () => {
+      alert('회원 등록에 실패했습니다.');
     },
   });
 
   const onSubmit = (data: UserForm) => {
-    console.log(data);
+    const payload = { ...data };
+    if (!payload.partId) delete payload.partId;
+    if (!payload.teamId) delete payload.teamId;
+
+    mutation.mutate(payload);
   };
+
   return (
     <main className="space-y-2 m-4">
       {/* 제목 */}
@@ -31,27 +51,41 @@ const UserRegister = ({ onClose }: UserRegisterProps) => {
       <hr />
 
       {/* 등록 폼 */}
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-3 my-5">
+      <form
+        onSubmit={handleSubmit(onSubmit, (errors) => {
+          console.log('validation errors:', errors);
+        })}
+        className="space-y-3 my-5"
+      >
         <Input name="name" id="name" label="이름" control={control} />
-        <Input name="userId" id="userId" label="아이디" control={control} />
+        <Input name="loginId" id="loginId" label="아이디" control={control} />
         <Input
-          name="generation"
-          id="generation"
+          name="password"
+          id="password"
+          label="비밀번호"
+          type="password"
+          control={control}
+        />
+        <Input
+          name="cohortId"
+          id="cohortId"
           label="기수"
           type="number"
           control={control}
         />
-        <Input name="part" id="part" label="파트" control={control} />
         <Input
-          name="phoneNumber"
-          id="phoneMumber"
-          label="전화번호"
+          name="partId"
+          id="partId"
+          label="파트"
+          type="number"
           control={control}
         />
+        <Input name="phone" id="phone" label="전화번호" control={control} />
         <Input
-          name="participationTeam"
-          id="participationTeam"
+          name="teamId"
+          id="teamId"
           label="참여팀"
+          type="number"
           control={control}
         />
 
