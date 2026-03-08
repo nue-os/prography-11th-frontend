@@ -1,13 +1,25 @@
 import z from 'zod';
 import { userFormSchema } from '../utils/validation';
 
+export interface GetUsersParams {
+  page?: number;
+  size?: number;
+  searchType?: 'name' | 'loginId' | 'phone';
+  searchValue?: string;
+  generation?: number;
+  partName?: string;
+  teamName?: string;
+  status?: 'ACTIVE' | 'INACTIVE' | 'WITHDRAWN';
+}
+
 export interface User {
-  userId: number;
+  id: number;
+  loginId: number;
   name: string;
-  position: string;
-  team: string;
-  attendanceCount: number;
-  status: '정상' | '탈퇴';
+  role: string;
+  partName: string;
+  teamName: string;
+  status: 'ACTIVE' | 'INACTIVE' | 'WITHDRAWN';
 }
 
 export type UserForm = z.infer<typeof userFormSchema>;
