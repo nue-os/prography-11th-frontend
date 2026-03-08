@@ -2,10 +2,11 @@ import { useState } from 'react';
 import Pagination from '../components/Pagination';
 import Table from '../components/Table';
 import { userColumns } from '../constants/admin';
-import { userHistoryData } from '../mocks/adminData';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import Modal from '../components/Modal';
 import UserRegister from './UserRegister';
+import { useQuery } from '@tanstack/react-query';
+import { getUsers } from '../apis/user';
 
 const UserHistory = () => {
   const navigate = useNavigate();
@@ -13,16 +14,16 @@ const UserHistory = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const currentPage = parseInt(searchParams.get('page') ?? '1', 10);
-  const itemsPerPage = 10;
 
-  const totalElements = userHistoryData.length;
-  const totalPages = Math.ceil(totalElements / itemsPerPage);
-  const startIndex = (currentPage - 1) * itemsPerPage;
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ['users', currentPage],
+    queryFn: () => getUsers({ page: currentPage - 1 }),
+  });
 
-  const usersData = userHistoryData.slice(
-    startIndex,
-    startIndex + itemsPerPage,
-  );
+  if (isLoading) return <div>데이터를 불러오는 중입니다...</div>;
+  if (isError || !data?.data) return <div>데이터를 불러오지 못했습니다.</div>;
+
+  const { totalPages, content: usersData } = data.data;
 
   const handlePageChange = (newPage: number) => {
     setSearchParams({ page: String(newPage) });
@@ -50,10 +51,14 @@ const UserHistory = () => {
               return status ? (
                 <span
                   className={
-                    status === '정상' ? 'text-green-600' : 'text-red-500'
+                    status === 'ACTIVE' ? 'text-green-600' : 'text-red-500'
                   }
                 >
-                  {status}
+                  {status === 'ACTIVE'
+                    ? '활동'
+                    : status === 'INACTIVE'
+                      ? '미활동'
+                      : '탈퇴'}
                 </span>
               ) : (
                 '-'
